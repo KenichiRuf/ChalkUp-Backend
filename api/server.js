@@ -4,7 +4,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 server.get("/", (req, res) => {
-  res.send("This is working");
+  res.send("Backend API for ChalkUp");
 });
 
 module.exports = server;
