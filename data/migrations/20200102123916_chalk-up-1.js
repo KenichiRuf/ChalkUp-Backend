@@ -20,7 +20,7 @@ exports.up = function(knex) {
       userroute.increments();
       userroute.string("notes");
       userroute.string("status");
-      userroute.boolean("sharing").defaultTo(false);
+      userroute.boolean("share").defaultTo(false);
       userroute
         .integer("userId")
         .unsigned()
