@@ -8,8 +8,8 @@ const User = require("./authModel");
 router.post("/register", async (req, res) => {
   const user = req.body;
   try {
-    await User.addUser(user);
-    res.status(201).json({ user: user, message: "Added User" });
+    const addedUser = await User.addUser(user);
+    res.status(201).json({ user: addedUser, message: "Added User" });
   } catch (error) {
     res.status(500).json({ message: "User Could Not Be Added", error: error });
   }

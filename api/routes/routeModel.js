@@ -13,9 +13,8 @@ module.exports = {
 };
 
 async function addRoute(routes) {
-  const [newRoute] = await db("routes")
-    .insert(routes)
-    .returning("*");
+  const [newRoute] = await db("routes").insert(routes);
+  //.returning("*");
   return newRoute;
 }
 
@@ -41,9 +40,8 @@ function findAllRoutes() {
 
 //Add new user_routes
 async function addUserRoute(routes) {
-  const [newUserRoute] = await db("user_routes")
-    .insert(routes)
-    .returning("*");
+  const [newUserRoute] = await db("user_routes").insert(routes);
+  //.returning("*");
   return newUserRoute;
 }
 

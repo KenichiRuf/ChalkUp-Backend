@@ -8,15 +8,14 @@ module.exports = {
 };
 
 async function addRating(rating) {
-  const [newRating] = await db("ratings")
-    .insert(rating)
-    .returning("*");
+  const [newRating] = await db("ratings").insert(rating);
+  //.returning("*");
   return newRating;
 }
 
 function editRating(rating, id) {
   return db("ratings")
-    .where("id", id)
+    .where("id", "=", id)
     .update(rating);
 }
 

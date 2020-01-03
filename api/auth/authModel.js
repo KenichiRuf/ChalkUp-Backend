@@ -1,14 +1,11 @@
 const db = require("../../data/dbConfig");
 
-module.exports = { addUser, findUserBy };
-
-async function addUser(user) {
-  const [newUser] = await db("users")
-    .insert(user)
-    .returning("*");
-  return newUser;
+function addUser(user) {
+  return db("users").insert(user);
 }
 
 function findUserBy(info) {
   return db("users").where(info);
 }
+
+module.exports = { addUser, findUserBy };
