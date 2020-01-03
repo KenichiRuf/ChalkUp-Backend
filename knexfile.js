@@ -37,7 +37,7 @@ module.exports = {
   },
 
   production: {
-    client: "postgresql",
+    client: "pg",
     connection: {
       database: process.env.DATABASE_URL
     },
@@ -45,6 +45,7 @@ module.exports = {
       min: 2,
       max: 10
     },
+    useNullAsDefault: true,
     migrations: {
       tableName: "knex_migrations"
     }
