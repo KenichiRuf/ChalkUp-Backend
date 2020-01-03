@@ -52,11 +52,49 @@ exports.up = function(knex) {
         .notNullable()
         .references("id")
         .inTable("routes");
+    })
+    .createTable("panels", function(panel) {
+      panel.increments();
+      panel.float("height").notNullable();
+      panel.float("width").notNullable();
+      panel.float("angle").notNullable();
+      panel
+        .integer("routeId")
+        .unsigned()
+        .references("id")
+        .inTable("routes");
+    })
+    .createTable("holds", function(hold) {
+      hold.increments();
+      hold.string("type");
+      hold.string("image").notNullable();
+    })
+    .createTable("panel_holds", function(panelHold) {
+      panelHold.increments();
+      panelHold.float("x").notNullable();
+      panelHold.float("y").notNullable();
+      panelHold.float("rotation").defaultTo(0);
+      panelHold.boolean("isStartHold").defaultTo(false);
+      panelHold
+        .integer("panelId")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("panels");
+      panelHold
+        .integer("holdId")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("holds");
     });
 };
 
 exports.down = function(knex) {
   return knex.schema
+    .dropTableIfExists("panel_holds")
+    .dropTableIfExists("holds")
+    .dropTableIfExists("panels")
     .dropTableIfExists("ratings")
     .dropTableIfExists("user_routes")
     .dropTableIfExists("routes")
